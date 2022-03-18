@@ -53,10 +53,10 @@ function Auth({ children }) {
   const [session, status] = useSession()
   const router = useRouter()
   useEffect(() => {
-    if (!session?.user && router.asPath !== '/api/auth/signin') {
+    if (!session?.user && !router.asPath.includes('/api/auth/signin')) {
       router.push('/api/auth/signin')
     }
-    if (session?.user && router.asPath === '/' || router.asPath.includes("/api/auth/signin")) {
+    if (session?.user && !router.asPath.includes("/home") || !router.asPath.includes("/categories") || !router.asPath.includes("/products")) {
       router.push('/home')
     }
   }, [router.asPath])
