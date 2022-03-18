@@ -56,7 +56,7 @@ function Auth({ children }) {
     if (!session?.user && router.asPath !== '/api/auth/signin') {
       router.push('/api/auth/signin')
     }
-    if (session?.user && router.asPath === '/') {
+    if (session?.user && router.asPath === '/' || router.asPath.includes("/api/auth/signin")) {
       router.push('/home')
     }
   }, [router.asPath])
