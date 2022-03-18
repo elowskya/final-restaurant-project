@@ -38,7 +38,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 }
 // https:/
 
-MyApp.getInitialProps = async (ctx) => {
+MyApp.getServerSideProps = async (ctx) => {
   // Calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(ctx)
   // Fetch global site settings from Strapi
@@ -53,13 +53,13 @@ function Auth({ children }) {
   const [session, status] = useSession()
   const router = useRouter()
   useEffect(() => {
+    if (session?.user && !router.asPath.includes("/home") && !router.asPath.includes("/categories") && !router.asPath.includes("/products")) {
+      router.push('/home')
+    }
     if (!session?.user && !router.asPath.includes('/api/auth/signin')) {
       router.push('/api/auth/signin')
     }
-    if (session?.user && !router.asPath.includes("/home") || !router.asPath.includes("/categories") || !router.asPath.includes("/products")) {
-      router.push('/home')
-    }
-  }, [router.asPath])
+  })
 
   if (!session?.user && router.asPath !== '/api/auth/signin') {
     const message = "You aren't authorized to view this page"
