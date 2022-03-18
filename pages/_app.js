@@ -53,15 +53,15 @@ function Auth({ children }) {
   const [session, status] = useSession()
   const router = useRouter()
   useEffect(() => {
-    if (!session?.user && !router.asPath.includes('/api/auth/signin')) {
+    if (!session?.user && router.asPath !== '/api/auth/signin') {
       router.push('/api/auth/signin')
     }
-    if (session?.user && router.asPath == '/') {
+    if (session?.user && router.asPath === '/') {
       router.push('/home')
     }
   }, [router.asPath])
 
-  if (!session?.user && !router.asPath.includes('/api/auth/signin')) {
+  if (!session?.user && router.asPath !== '/api/auth/signin') {
     const message = "You aren't authorized to view this page"
     return (
       <div className="hero">

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { getProducts, getProduct, getCategories } from '../../utils/api'
 import Layout from '../../components/Layout'
 import { useState } from 'react'
+import { TextField } from '@mui/material'
 
 const ProductPage = ({ product, categories }) => {
   const router = useRouter()
@@ -18,16 +19,13 @@ const ProductPage = ({ product, categories }) => {
         <title>{product.title} product</title>
       </Head>
       <Layout categories={categories}>
-        <span>
-          Search: &nbsp;
-          <input
+        <div style={{ padding: '10px'}}>
+          <TextField
             value={filter}
             onChange={(e) => {
               setFilter(e.target.value)
-            }}
-            style={{ width: '75px', padding: '5px' }}
-          />
-        </span>
+            }} fullWidth size='small' label="Search" />
+        </div>
         {product.food_items
           .filter((food) =>
             food.name.toLowerCase().includes(filter.toLowerCase())

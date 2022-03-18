@@ -1,21 +1,19 @@
 import NextImage from './Image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { TextField } from '@mui/material'
 
 const ProductsList = ({ products }) => {
   const [filter, setFilter] = useState('')
   return (
     <>
-      <span>
-        Search: &nbsp;
-        <input
-          value={filter}
-          onChange={(e) => {
-            setFilter(e.target.value)
-          }}
-          style={{ width: '75px', padding: '5px' }}
-        />
-      </span>
+        <div style={{ padding: '10px'}}>
+          <TextField
+            value={filter}
+            onChange={(e) => {
+              setFilter(e.target.value)
+            }} fullWidth size='small' label="Search" />
+        </div>
       <div className="m-6 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-8">
         {products
           .filter((product) =>
