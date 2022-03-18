@@ -2,10 +2,6 @@ import { useSession, signIn, signOut } from 'next-auth/client'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
-import Image from 'next/image'
-import landingImage from '../public/assets/images/landingImage.jpg'
-import HomePage from './home'
-import { Grid, Box, Typography, useMediaQuery } from '@mui/material'
 
 const IndexPage = () => {
   const [session, status] = useSession()
@@ -52,7 +48,7 @@ const IndexPage = () => {
   return (
     <div className="hero">
       <Head>
-        <title>Strapi Next.js E-commerce</title>
+        <title>Ashleys Awesome App</title>
       </Head>
       <div className="navbar">
         {signOutButtonNode()}

@@ -4,6 +4,7 @@ import { getProducts, getCategories } from '../utils/api'
 import Layout from '../components/Layout'
 
 const HomePage = ({ products, categories }) => {
+
   return (
     <Layout categories={categories}>
       <Head>

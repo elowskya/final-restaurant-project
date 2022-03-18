@@ -38,7 +38,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 }
 // https:/
 
-MyApp.getServerSideProps = async (ctx) => {
+MyApp.getInitialProps = async (ctx) => {
   // Calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(ctx)
   // Fetch global site settings from Strapi
@@ -56,10 +56,10 @@ function Auth({ children }) {
     if (session?.user && !router.asPath.includes("/home") && !router.asPath.includes("/categories") && !router.asPath.includes("/products")) {
       router.push('/home')
     }
-    if (!session?.user && !router.asPath.includes('/api/auth/signin')) {
+    if (!session?.user && router.asPath !== '/api/auth/signin') {
       router.push('/api/auth/signin')
     }
-  })
+  }, [session, status])
 
   if (!session?.user && router.asPath !== '/api/auth/signin') {
     const message = "You aren't authorized to view this page"
