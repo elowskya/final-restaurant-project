@@ -29,9 +29,8 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
           id="snipcart"
           data-api-key="ODhhNWUxOGEtNTk0OC00OTQwLWJkOWMtM2M1ZmNjODU1ZDJhNjM3MzMyNzM0NjM1OTMyNjcz"
         />
-        <Auth>
+        
           <Component {...pageProps} />
-        </Auth>
       </Provider>
     </>
   )
@@ -49,28 +48,28 @@ MyApp.getInitialProps = async (ctx) => {
   return { ...appProps, pageProps: { session, path: ctx.pathname } }
 }
 
-function Auth({ children }) {
-  const [session, status] = useSession()
-  const router = useRouter()
-  useEffect(() => {
-    if (session?.user && !router.asPath.includes("/home") && !router.asPath.includes("/categories") && !router.asPath.includes("/products")) {
-      router.push('/home')
-    }
-    if (!session?.user && router.asPath !== '/api/auth/signin') {
-      router.push('/api/auth/signin')
-    }
-  }, [session, status])
+// function Auth({ children }) {
+//   const [session, status] = useSession()
+//   const router = useRouter()
+//   useEffect(() => {
+//     if (session?.user && !router.asPath.includes("/home") && !router.asPath.includes("/categories") && !router.asPath.includes("/products")) {
+//       router.push('/home')
+//     }
+//     if (!session?.user && router.asPath !== '/api/auth/signin') {
+//       router.push('/api/auth/signin')
+//     }
+//   }, [session, status])
 
-  if (!session?.user && router.asPath !== '/api/auth/signin') {
-    const message = "You aren't authorized to view this page"
-    return (
-      <div className="hero">
-        <div className="text">{message}</div>
-      </div>
-    )
-  }
+//   if (!session?.user && router.asPath !== '/api/auth/signin') {
+//     const message = "You aren't authorized to view this page"
+//     return (
+//       <div className="hero">
+//         <div className="text">{message}</div>
+//       </div>
+//     )
+//   }
 
-  return children
-}
+//   return children
+// }
 
 export default MyApp

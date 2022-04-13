@@ -2930,7 +2930,7 @@
     "preact-render-to-string" "^5.1.14"
     "querystring" "^0.2.0"
 
-"next@>=10.2.0", "next@11.0.0":
+"next@^11.0.0", "next@>=10.2.0":
   "integrity" "sha512-1OA0ccCTwVtdLats/1v7ReiBVx+Akya0UVhHo9IBr8ZkpDI3/SGNcaruJBp5agy8ROF97VDKkZamoUXxRB9NUA=="
   "resolved" "https://registry.npmjs.org/next/-/next-11.0.0.tgz"
   "version" "11.0.0"

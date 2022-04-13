@@ -2,13 +2,22 @@ import { useSession, signIn, signOut } from 'next-auth/client'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
+import { useEffect } from "react"
+import { useRouter } from "next/router"
 
 const IndexPage = () => {
   const [session, status] = useSession()
+  const router = useRouter()
+  useEffect(()=>{
+    
+      router.push("/home")
+    
+  })
   const signInButtonNode = () => {
     if (session) {
       return false
     }
+
     return (
       <div>
         <Link href="/api/auth/signin">
@@ -18,7 +27,7 @@ const IndexPage = () => {
               signIn()
             }}
           >
-            Sign In
+            Sign In test
           </button>
         </Link>
       </div>

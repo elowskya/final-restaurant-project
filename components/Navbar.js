@@ -15,10 +15,10 @@ const Navbar = () => {
 
       <div className="flex items-center text-sm text-indigo-500">
         <span className="ml-3 font-semibold text-sm text-black">
-          Hello, {session.user?.email}
+          Hello, {session?.user?.email || "Guest"}
         </span>
         &nbsp; &nbsp; &nbsp;
-        <button
+       { session?.user?.email && <button 
           onClick={signOut}
           style={{
             border: '1.5px solid indigo',
@@ -28,7 +28,7 @@ const Navbar = () => {
         >
           {' '}
           Sign Out
-        </button>
+        </button>}
       </div>
     </div>
   )
